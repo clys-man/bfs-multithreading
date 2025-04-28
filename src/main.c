@@ -6,9 +6,8 @@ int main() {
     addEdge(graph, 0, 1);
     addEdge(graph, 1, 2);
     addEdge(graph, 2, 3);
-    addEdge(graph, 3, 4);
 
-    printAdjMatrix(graph);
+    BFS(graph, 0);
 
     destroyGraph(graph);
 

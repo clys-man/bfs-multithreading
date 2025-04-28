@@ -55,3 +55,38 @@ void destroyGraph(Graph* graph) {
     free(graph);
 }
 
+
+void BFS(Graph* graph, int start) {
+    if (start < 0 || start >= graph->numVertices) {
+        printf("Erro: Vértice inicial inválido.\n");
+        return;
+    }
+
+    bool* visited = (bool*)malloc(graph->numVertices * sizeof(bool));
+    for (int i = 0; i < graph->numVertices; i++) {
+        visited[i] = false;
+    }
+
+    int* queue = (int*)malloc(graph->numVertices * sizeof(int));
+    int front = 0, rear = 0;
+
+    visited[start] = true;
+    queue[rear++] = start;
+
+    while (front < rear) {
+        int current = queue[front++];
+        printf("%d ", current);
+
+        for (int i = 0; i < graph->numVertices; i++) {
+            if (graph->adjMatrix[current][i] == 1 && !visited[i]) {
+                visited[i] = true;
+                queue[rear++] = i;
+            }
+        }
+    }
+
+    printf("\n");
+    free(visited);
+    free(queue);
+}
+
